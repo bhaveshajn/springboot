@@ -17,6 +17,20 @@ pipeline {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
             }
-        }//end of test	
+        }//end of test
+	    
+	stage('Sonar Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                sh 'mvn sonar:sonar' 
+              }
+            }
+        }//end of sonar
+	    
+	stage("Sonar Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }//end of Sonar Quality gate
       }//end stages
     }//end pipeline
