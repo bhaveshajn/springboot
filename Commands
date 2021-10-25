@@ -10,6 +10,10 @@ Here is the content of the file
 root   -   nofile   65536
 root   -   nproc    7610
 
+reboot the system
+
+sudo apt-get update
+
 docker pull sonarqube
 
 docker volume create sonarqube-conf 
