@@ -14,7 +14,7 @@ reboot the system
 
 sudo apt-get update
 
-docker pull sonarqube
+docker pull sonarqube:7.5-community
 
 docker volume create sonarqube-conf 
 docker volume create sonarqube-data
