@@ -21,6 +21,12 @@ docker volume create sonarqube-data
 docker volume create sonarqube-logs
 docker volume create sonarqube-extensions
 
+Verify the persistent data directories.
+docker volume inspect sonarqube-conf 
+docker volume inspect sonarqube-data
+docker volume inspect sonarqube-logs
+docker volume inspect sonarqube-extensions
+
 mkdir /sonarqube
 ln -s /var/lib/docker/volumes/sonarqube-conf/_data /sonarqube/conf
 ln -s /var/lib/docker/volumes/sonarqube-data/_data /sonarqube/data
