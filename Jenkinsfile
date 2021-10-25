@@ -1,9 +1,9 @@
 pipeline {
     agent any
-	//tools {
-    	  // maven '3.6.3'
-	  // jdk '1.8'
-        //}
+	tools {
+    	   maven '3.6.3'
+	   jdk '1.8'
+        }
     stages {
         stage('Build') {
             steps {
@@ -27,10 +27,10 @@ pipeline {
             }
         }//end of sonar
 	    
-	stage("Sonar Quality gate") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }//end of Sonar Quality gate
+	//stage("Sonar Quality gate") {
+            //steps {
+                //waitForQualityGate abortPipeline: true
+            //}
+        //}//end of Sonar Quality gate
       }//end stages
     }//end pipeline
