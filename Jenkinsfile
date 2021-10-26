@@ -12,7 +12,7 @@ pipeline {
             }
         }//end build
 	    
-	stage('Build') {
+	stage('Push Package') {
             steps {
                 //sh 'mvn -B -DskipTests clean package'
                 sh 'mvn deploy -s settings.xml'
