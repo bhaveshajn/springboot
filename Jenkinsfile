@@ -12,6 +12,13 @@ pipeline {
             }
         }//end build
 	    
+	stage('Build') {
+            steps {
+                //sh 'mvn -B -DskipTests clean package'
+                sh 'mvn deploy -s settings.xml'
+            }
+        }//end build
+	    
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -19,16 +26,16 @@ pipeline {
             }
         }//end of test
 	    
-	stage('Sonar Analysis') {
-            steps {
+	//stage('Sonar Analysis') {
+            //steps {
                 //withSonarQubeEnv('SonarQube') {
                 //sh 'mvn sonar:sonar' 
-		sh 'mvn sonar:sonar \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.login=devops'
+		//sh 'mvn sonar:sonar \
+  //-Dsonar.host.url=http://localhost:9000 \
+  //-Dsonar.login=devops'
               //}
-            }
-        }//end of sonar
+            //}
+        //}//end of sonar
 	    
 	//stage("Sonar Quality gate") {
             //steps {
