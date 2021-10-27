@@ -38,13 +38,15 @@ pipeline {
                 //waitForQualityGate abortPipeline: true
             //}
         //}//end of Sonar Quality gate
-      }//end stages
-	  
-	  stage('Ansible') {
+		
+		stage('Ansible') {
             steps {
 			sh 'cd ansible'
 			sh 'ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e "ansible_user=vagrant" -e "ansible_password=vagrant"'    
             }
-        }//end of test
+        }//end of ansible
+      }//end stages
+	  
+	  
 	  
     }//end pipeline
