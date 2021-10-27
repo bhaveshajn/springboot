@@ -1,0 +1,7 @@
+# connection protocols
+linux_ansible_connection: ssh
+linux_ansible_port: 22
+windows_ansible_connection: winrm
+windows_ansible_port: 5985
+ansible_winrm_transport: ntlm  #authentication option, other possible values are "basic", "kerberos", "Certificate", "CredSSP"
+ansible_winrm_server_cert_validation: ignore

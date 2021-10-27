@@ -14,7 +14,6 @@ pipeline {
 	    
 	stage('Push Package') {
             steps {
-                //sh 'mvn -B -DskipTests clean package'
                 sh 'mvn deploy -s settings.xml'
             }
         }//end build
@@ -40,4 +39,12 @@ pipeline {
             //}
         //}//end of Sonar Quality gate
       }//end stages
+	  
+	  stage('Ansible') {
+            steps {
+			sh 'cd ansible'
+			sh 'ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e "ansible_user=vagrant" -e "ansible_password=vagrant"'    
+            }
+        }//end of test
+	  
     }//end pipeline

@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars:
+  tasks:
+    - name: ping
+      action: ping
+      
+    - name: downloading the binary from artifactory
+      get_url:
+        url: https://trainingdevopscicd.jfrog.io/artifactory/default-maven-virtual/org/springframework/boot/spring-rest-hello-world/1.0/spring-rest-hello-world-1.0.jar
+        dest: /tmp/spring-rest-hello-world-1.0.jar
+        url_username: anujnarayan23@gmail.com
+        url_password: Admin@123
+
+    - name: run the jar
+      shell: nohup java -jar /tmp/spring-rest-hello-world-1.0.jar 2>/dev/null &

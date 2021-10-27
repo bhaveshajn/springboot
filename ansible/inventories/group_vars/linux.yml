@@ -1,0 +1,7 @@
+ansible_connection: "{{ linux_ansible_connection }}"
+ansible_port: "{{ linux_ansible_port }}"
+ansible_winrm_transport: ntlm
+ansible_winrm_operation_timeout_sec: 300
+ansible_winrm_read_timeout_sec: 300
+ansible_user: "{{ ansible_username }}"
+ansible_password: "{{ ansible_pwd }}"
