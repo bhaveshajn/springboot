@@ -16,29 +16,13 @@ pipeline {
             steps {
                 sh 'mvn deploy -s settings.xml'
             }
-        }//end build
-	    
+        }//end push packages
         stage('Test') {
             steps {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
             }
         }//end of test
-	    
-	//stage('Sonar Analysis') {
-            //steps {
-                //withSonarQubeEnv('SonarQube') {
-                //sh 'mvn sonar:sonar' 
-           	//}
-	    //}
-        //}//end of sonar
-	    
-	//stage("Sonar Quality gate") {
-            //steps {
-                //waitForQualityGate abortPipeline: true
-            //}
-        //}//end of Sonar Quality gate
-		
 		stage('Ansible') {
             steps {
 			sh 'cd ansible'
@@ -46,7 +30,4 @@ pipeline {
             }
         }//end of ansible
       }//end stages
-	  
-	  
-	  
     }//end pipeline
