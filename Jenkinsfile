@@ -30,11 +30,8 @@ pipeline {
             //steps {
                 //withSonarQubeEnv('SonarQube') {
                 //sh 'mvn sonar:sonar' 
-		//sh 'mvn sonar:sonar \
-  //-Dsonar.host.url=http://localhost:9000 \
-  //-Dsonar.login=devops'
-              //}
-            //}
+           	//}
+	    //}
         //}//end of sonar
 	    
 	//stage("Sonar Quality gate") {
