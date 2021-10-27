@@ -25,8 +25,10 @@ pipeline {
         }//end of test
 		stage('Ansible') {
             steps {
-			sh 'cd ansible'
-			sh 'ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e "ansible_user=vagrant" -e "ansible_password=vagrant"'    
+			sh '''
+			cd ansible
+			ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e "ansible_user=vagrant" -e "ansible_password=vagrant"
+			'''
             }
         }//end of ansible
       }//end stages
