@@ -1,5 +1,10 @@
 pipeline {
 	agent { label 'master' }
+	
+	environment {
+		vm_creds = credentials('vagrant')
+	}
+	
 	tools {
     	   maven '3.6.3'
 	   jdk '1.8'
@@ -44,7 +49,7 @@ pipeline {
 				sh '''
 				cd ansible
 				export ANSIBLE_HOST_KEY_CHECKING=False
-				ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e "ansible_user=vagrant" -e "ansible_password=vagrant"
+				ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e ansible_user=$vm_creds_USR -e ansible_password=$vm_creds_PSW
 				'''
 			}
 		}//end of ansible
