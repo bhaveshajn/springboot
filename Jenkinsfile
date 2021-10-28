@@ -1,9 +1,10 @@
 pipeline {
-	agent { label 'master' }
+	agent any
+	//{ label 'master' }
 	
-	environment {
-		vm_creds = credentials('vagrant')
-	}
+	//environment {
+	//	vm_creds = credentials('vagrant')
+	//}
 	
 	tools {
     	   maven '3.6.3'
@@ -13,15 +14,8 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh 'mvn -B -DskipTests clean package'
-				//sh 'mvn deploy -s settings.xml'
 			}
 		}//end build
-		
-		stage('Push Package') {
-			steps {
-				sh 'mvn deploy -s settings.xml'
-			}
-		}//end push packages
 		
 		stage('Test') {
 			steps {
@@ -38,21 +32,29 @@ pipeline {
 			}
 		}//end of sonar
 		
-		//stage("Sonar Quality gate") {
-		//	steps {
-		//		waitForQualityGate abortPipeline: true
-		//	}
-		//}//end of Sonar Quality gate
-		
-		stage('Ansible') {
+		stage("Sonar Quality gate") {
 			steps {
-				sh '''
-				cd ansible
-				export ANSIBLE_HOST_KEY_CHECKING=False
-				ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e ansible_user=$vm_creds_USR -e ansible_password=$vm_creds_PSW
-				'''
+				waitForQualityGate abortPipeline: true
 			}
-		}//end of ansible
+		}//end of Sonar Quality gate
+		
+		stage('Push Package') {
+			steps {
+				sh 'mvn deploy -s settings.xml'
+			}
+		}//end push packages
+		
+		
+		
+		//stage('Ansible') {
+		//	steps {
+		//		sh '''
+		//		cd ansible
+		//		export ANSIBLE_HOST_KEY_CHECKING=False
+		//		ansible-playbook -i inventories/hosts -l linux deploy-package.yml  -e ansible_user=$vm_creds_USR -e ansible_password=$vm_creds_PSW
+		//		'''
+		//	}
+		//}//end of ansible
 		
 	}//end stages
 }//end pipeline
