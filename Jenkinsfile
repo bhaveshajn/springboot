@@ -1,5 +1,6 @@
 pipeline {
 	agent any
+	def qualitygate = waitForQualityGate()
 	//{ label 'master' }
 	
 	//environment {
@@ -35,7 +36,7 @@ pipeline {
 		stage("Sonar Quality gate") {
 			steps {
 				//waitForQualityGate abortPipeline: true
-				def qualitygate = waitForQualityGate()
+				
       				if (qualitygate.status != "OK") {
          			error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
 				}
