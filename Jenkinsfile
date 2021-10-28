@@ -1,6 +1,6 @@
 pipeline {
 	agent any
-	def qualitygate = waitForQualityGate()
+
 	//{ label 'master' }
 	
 	//environment {
@@ -34,13 +34,13 @@ pipeline {
 		}//end of sonar
 		
 		stage("Sonar Quality gate") {
-			steps {
+			//steps {
 				//waitForQualityGate abortPipeline: true
-				
+				def qualitygate = waitForQualityGate()
       				if (qualitygate.status != "OK") {
          			error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
 				}
-			}
+			//}
 		}//end of Sonar Quality gate
 		
 		stage('Push Package') {
