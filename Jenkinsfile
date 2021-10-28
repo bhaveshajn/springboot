@@ -6,10 +6,10 @@ pipeline {
 	//	vm_creds = credentials('vagrant')
 	//}
 	
-	tools {
-    	   maven '3.6.3'
-	   jdk '1.8'
-	}
+	//tools {
+    	  // maven '3.6.3'
+	  // jdk '1.8'
+	//}
 	stages {
 		stage('Build') {
 			steps {
