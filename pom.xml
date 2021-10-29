@@ -161,7 +161,7 @@
         </plugins>
 
     </build>
-	<distributionManagement>
+<distributionManagement>
     <repository>
         <id>central</id>
         <name>a0q30bip30zbw-artifactory-primary-0-releases</name>
