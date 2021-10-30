@@ -96,6 +96,6 @@ pipeline {
 		//		'''
 		//	}
 		//}//end of ansible
-		
+	
 	}//end stages
 }//end pipeline
