@@ -19,7 +19,7 @@ spec:
    - name: myapp
      image: trainingdevopscicd.jfrog.io/default-docker-local/devops:tagversion
      ports:
-     - containerPort: 8082
+     - containerPort: 1213
    imagePullSecrets:
      - name: devops  
 
@@ -35,5 +35,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8082
+      targetPort: 1213
       
