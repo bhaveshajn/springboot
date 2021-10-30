@@ -58,7 +58,7 @@ pipeline {
 		
 		stage('Docker Build') {
 	    steps {
-		withDockerRegistry([ credentialsId: "Artifactory", url: "https://trainingdevopscicd.jfrog.io/" ]) {
+		withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
 		sh 'docker build -t "devops:${BUILD_NUMBER}" .'
 		sh 'docker tag "devops:${BUILD_NUMBER}" trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
 		}
