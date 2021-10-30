@@ -67,7 +67,7 @@ pipeline {
 	    
 	stage('Docker Push') {
 	    steps {
-		withDockerRegistry([ credentialsId: "Artifactory", url: "https://trainingdevopscicd.jfrog.io/" ]) {
+		withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
 		sh 'docker push trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
 		}
 	     }
